@@ -16,16 +16,15 @@ import java.util.List;
 // 임시로 사용하기 위해서, 메모리 위에 작업을 한다.
 // 기본설정 파일과, 테스트를 위한 설정 파일을 2개 분리해서 작업 중.
 
-//public interface ItemRepository extends JpaRepository<Item, Long> {
-//    public interface MemberRepository extends JpaRepository<Member, Long>,
-//        QuerydslPredicateExecutor<Member> {
-public interface MemberRepository extends JpaRepository<Member, Long> {
-    //
+public interface MemberRepository extends JpaRepository<Member, Long>,
+        QuerydslPredicateExecutor<Member> {
+    //public interface MemberRepository extends JpaRepository<Member, Long> {
+//
 //    여러개의 쿼리 메소드 중에서, 조회 부분 보고,
 //    조회하는 옵션을 하나씩 볼 예정
 //    findByUserNm.
     List<Member> findByUserNm(String userNm);
-    List<Member> findByUserDescription(String userDescription);
+//    List<Member> findByUserDescription(String userDescription);
 
     List<Member> findByUserNmOrUserDescription(String userNm, String userDescription);
 
@@ -38,7 +37,8 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     // queryDSl 를 사용을 함.
     @Query("select m from Member m where m.userDescription like " +
             "%:userDescription% order by m.regTime desc")
-    List<Member> findByItemDetail(@Param("userDescription") String userDescription);
+    List<Member> findByUserDescription(@Param("userDescription") String userDescription);
+
 
     // 주의사항
     //nativeQuery = true 사용시,
@@ -46,7 +46,8 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     // 만약, 단위 테스트 중, 안되는 부분이 있으면, 실제 디비로 확인필요.
     // userDescription -> user_description
     // regTime -> reg_time
-    @Query(value="select * from member i where i.user_description like " +
+    @Query(value = "select * from member i where i.user_description like " +
             "%:userDescription% order by i.reg_time desc", nativeQuery = true)
     List<Member> findByUserDescriptionByNative(@Param("userDescription") String userDescription);
+
 }

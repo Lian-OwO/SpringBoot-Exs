@@ -1,22 +1,30 @@
 package com.shop.ch2homework.repository_scb0925;
 
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.shop.ch2homework.repository_scb0925.MemberRepository;
 import com.shop.ch2homework.constant_scb0925.UserRole;
 import com.shop.ch2homework.entity_scb0925.Member;
 import com.shop.ch2homework.entity_scb0925.QMember;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.querydsl.QSort;
 import org.springframework.test.context.TestPropertySource;
+import org.thymeleaf.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.time.LocalDateTime;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 // 테스트를 하기위한 , 설정 파일을 분리했고, 로드.
@@ -66,6 +74,7 @@ class MemberRepositoryTest {
 
     @Test
     void findByUserNm() {
+
         this.createMemberList();
         List<Member> memberList = memberRepository.findByUserNm("서청빈1");
         for(Member member : memberList){
@@ -167,6 +176,54 @@ class MemberRepositoryTest {
             member.setUserRole(UserRole.USER);
             member.setRegTime(LocalDateTime.now());
             memberRepository.save(member);
+        }
+    }
+
+    // Predicator , 검색 조건 + 페이징 처리 , 방법2
+    @Test
+    @DisplayName("상품 Querydsl 조회 테스트 2")
+    public void queryDslTest2(){
+
+        this.createMemberList2();
+// 빌드 패턴으로, 쿼리에 관련된 옵션을 담을 인스턴스
+        // querydsl 사용할 때, 조건을 담는 도우미 클래스
+        BooleanBuilder booleanBuilder = new BooleanBuilder();
+        QMember qMember = QMember.member;
+        String userDescription = "실습 풀이중";
+        String memberUserRole = "ADMIN";
+
+
+        booleanBuilder.and(qMember.userDescription.like("%" + userDescription + "%"));
+//        booleanBuilder.and(qMember.id.gt(5));
+        System.out.println(UserRole.ADMIN);
+        if(StringUtils.equals(memberUserRole, UserRole.ADMIN)){
+            booleanBuilder.and(qMember.userRole.eq(UserRole.ADMIN));
+        }
+
+
+        // 부트, 페이징을 처리하기 위해서,
+        // 시스템으로 자주 반복되는 기능중에 하나인 페이징 처리 쉽게 해주는 클래스.
+        // ex) 0 페이지 -> 1페이지, size : 한 페이지에 보여주는 갯수.
+//        Pageable pageable = PageRequest.of(0, 3);
+        // 추가, 정렬 부분.
+        Pageable pageable = PageRequest.of(0, 3, Sort.by("regTime").descending());
+
+
+        // predicator 라는 것을 사용시, 검색 조건과, 페이징의 조건을 같이 이용해서, 조회 가능 기능.
+
+        // 정렬 순서 옵션 추가 부분.
+        //예제
+        // memberRepository.findAll : 인자가 2가지,1) predicate, paging
+        //  memberRepository.findAll : 2)example, sort
+        // pageable 에서 , 정렬 추가 해보기.
+
+        Page<Member> memberPagingResult = memberRepository.findAll(booleanBuilder, pageable);
+
+        System.out.println("total elements : " + memberPagingResult. getTotalElements ());
+
+        List<Member> resultItemList = memberPagingResult.getContent();
+        for(Member resultItem: resultItemList){
+            System.out.println(resultItem.toString());
         }
     }
 

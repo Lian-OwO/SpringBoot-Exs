@@ -21,3 +21,9 @@ body {
     margin-left: 200px;
     margin-right: 200px;
 }
+
+tr{
+    text-align: center;
+    color: indigo;
+    background-color: paleturquoise;
+}

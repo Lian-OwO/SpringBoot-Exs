@@ -1,10 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout=http://www.ultraq.net.nz/thymeleaf/layout
+      xmlns:layout=http://www.ultraq.net.nz/thymeleaf/layout xmlns="http://www.w3.org/1999/html"
       layout:decorate="~{layouts/layout1}">
-
+<body>
 <div layout:fragment="content">
-    본문 영역 입니다.
+    <table border="1">
+        <thead>
+        <tr>
+            <td>순번</td>
+            <td>상품명</td>
+            <td>상품설명</td>
+            <td>가격</td>
+            <td>상품등록일</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="itemDto, status: ${itemDtoList}">
+            <td th:text="${status.index}"></td>
+            <td th:text="${itemDto.itemNm}"></td>
+            <td th:text="${itemDto.itemDetail}"></td>
+            <td th:text="${itemDto.price}"></td>
+            <td th:text="${itemDto.regTime}"></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
+</body>
 
 </html>

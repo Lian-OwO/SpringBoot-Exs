@@ -2,7 +2,6 @@ package com.example.ch3test.ch2test.entity;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.example.ch3test.ch2test.constant.ItemSellStatus;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -16,7 +15,7 @@ import com.querydsl.core.types.Path;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QItem extends EntityPathBase<Item> {
 
-    private static final long serialVersionUID = -312596482L;
+    private static final long serialVersionUID = -1811837936L;
 
     public static final QItem item = new QItem("item");
 
@@ -26,7 +25,7 @@ public class QItem extends EntityPathBase<Item> {
 
     public final StringPath itemNm = createString("itemNm");
 
-    public final EnumPath<ItemSellStatus> itemSellStatus = createEnum("itemSellStatus", ItemSellStatus.class);
+    public final EnumPath<com.example.ch3test.ch2test.constant.ItemSellStatus> itemSellStatus = createEnum("itemSellStatus", com.example.ch3test.ch2test.constant.ItemSellStatus.class);
 
     public final NumberPath<Integer> price = createNumber("price", Integer.class);
 

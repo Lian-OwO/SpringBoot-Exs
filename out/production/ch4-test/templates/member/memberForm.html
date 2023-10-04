@@ -31,6 +31,7 @@
     <form action="/members/new" role="form" method="post"  th:object="${memberFormDto}">
         <div class="form-group">
             <label th:for="name">이름</label>
+<!--           th:block:filed=*{name}* 서버에 전달할 변수 지정 -->
             <input type="text" th:field="*{name}" class="form-control" placeholder="이름을 입력해주세요">
             <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError">Incorrect data</p>
         </div>

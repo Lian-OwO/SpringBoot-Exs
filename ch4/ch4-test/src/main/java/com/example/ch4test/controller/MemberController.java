@@ -24,15 +24,19 @@ public class MemberController {
     private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
 
+    //회원가입 폼
     @GetMapping(value = "/new")
     public String memberForm(Model model){
+        // 서버 -> 뷰, 데이터만 전달.
         model.addAttribute("memberFormDto", new MemberFormDto());
+        //뷰 리졸버, 타임리프 사용해서, 회원 가입 폼 html로 전달.
         return "member/memberForm";
     }
-
+    // 회원가입 처리
     @PostMapping(value = "/new")
     public String newMember(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model){
-
+        //기본적인 유효성 체크, 값의 유무
+        // BindingResult -> 유효성 체크에서, 오류가 발생시, 메세지 결과 확인하는 용도
         if(bindingResult.hasErrors()){
             return "member/memberForm";
         }

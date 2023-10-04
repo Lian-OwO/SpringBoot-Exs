@@ -79,6 +79,14 @@ class OrderTest {
     }
 
     public Order createOrder(){
+        // 주문에 담겨진 요소
+        // 1) 주문_상품 을 요소로하는 리스트
+        // 2) 멤버
+        // 주문 상품 ->추가
+        // -> 주문 상품 추가
+        // -> 주문 상품 아이템들을 요소로 가지는 리스트에 추가
+        // -> 회원 추가
+        // -> 주문, 회원추가(주문자)
         Order order = new Order();
         for(int i=0;i<3;i++){
             Item item = createItem();
@@ -108,10 +116,17 @@ class OrderTest {
     @Test
     @DisplayName("지연 로딩 테스트")
     public void lazyLoadingTest(){
+        // 주문
         Order order = this.createOrder();
+        // 주문 클래스 안에 필드로, 주문 아이템 리스트 멤버가 존재.
         Long orderItemId = order.getOrderItems().get(0).getId();
+        // 실제 디비에 반영하고
         em.flush();
+        // 중간 저장소를 비우기 전에, orderItemId, 주문_상품의 번호를 기록.
         em.clear();
+        // 주문_상품을 조회시, 실제 디비에서 찾기를 할 때,
+        // 연관이 있는 것만 조회(lazy),
+        // 연관이 없는 것도 조회 할거냐(eager 즉시로딩)
         OrderItem orderItem = orderItemRepository.findById(orderItemId)
                 .orElseThrow(EntityNotFoundException::new);
         System.out.println("Order class : " + orderItem.getOrder().getClass());

@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Getter @Setter
@@ -26,6 +25,4 @@ public class OrderItem extends BaseEntity {
 
     private int count; //수량
 
-//    private LocalDateTime regTime;
-//    private LocalDateTime updateTime;
 }

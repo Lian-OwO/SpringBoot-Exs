@@ -1,8 +1,9 @@
 package com.example.ch5test.entity;
 
+
+import com.example.ch5test.constant.OrderStatus;
 import lombok.Getter;
 import lombok.Setter;
-import com.example.ch5test.constant.OrderStatus;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -19,6 +20,7 @@ public class Order extends BaseEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+//    @ManyToOne()
     @JoinColumn(name = "member_id")
     private Member member;
 

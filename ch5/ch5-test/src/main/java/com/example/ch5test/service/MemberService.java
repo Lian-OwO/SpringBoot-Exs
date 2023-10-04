@@ -1,7 +1,8 @@
 package com.example.ch5test.service;
 
-import com.example.ch5test.repository.MemberRepository;
+
 import com.example.ch5test.entity.Member;
+import com.example.ch5test.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

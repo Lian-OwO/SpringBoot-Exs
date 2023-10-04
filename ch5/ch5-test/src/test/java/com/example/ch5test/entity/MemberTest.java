@@ -1,6 +1,6 @@
 package com.example.ch5test.entity;
 
-import com.example.ch5test.entity.Member;
+
 import com.example.ch5test.repository.MemberRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

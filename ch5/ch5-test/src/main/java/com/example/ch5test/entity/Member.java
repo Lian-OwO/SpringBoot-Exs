@@ -1,12 +1,12 @@
 package com.example.ch5test.entity;
 
 
+import com.example.ch5test.constant.Role;
 import com.example.ch5test.dto.MemberFormDto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import com.example.ch5test.constant.Role;
 
 import javax.persistence.*;
 

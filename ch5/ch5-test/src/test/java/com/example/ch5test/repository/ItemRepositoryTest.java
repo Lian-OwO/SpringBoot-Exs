@@ -2,10 +2,10 @@ package com.example.ch5test.repository;
 
 import com.example.ch5test.constant.ItemSellStatus;
 import com.example.ch5test.entity.Item;
+import com.example.ch5test.entity.QItem;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.TestPropertySource;
 import org.thymeleaf.util.StringUtils;
-import ch5test.entity.QItem;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

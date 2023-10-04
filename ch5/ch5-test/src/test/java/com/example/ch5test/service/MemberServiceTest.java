@@ -1,8 +1,8 @@
 package com.example.ch5test.service;
 
+
 import com.example.ch5test.dto.MemberFormDto;
 import com.example.ch5test.entity.Member;
-import com.example.ch5test.service.MemberService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.transaction.annotation.Transactional;
-import com.example.ch5test.service.MemberService;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class MemberServiceTest {
 
     @Autowired
-     MemberService memberService;
+    MemberService memberService;
 
     @Autowired
     PasswordEncoder passwordEncoder;

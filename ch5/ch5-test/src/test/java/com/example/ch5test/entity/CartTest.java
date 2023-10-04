@@ -1,9 +1,7 @@
 package com.example.ch5test.entity;
 
-import com.example.ch5test.dto.MemberFormDto;
-import com.example.ch5test.entity.Cart;
-import com.example.ch5test.entity.Member;
 
+import com.example.ch5test.dto.MemberFormDto;
 import com.example.ch5test.repository.CartRepository;
 import com.example.ch5test.repository.MemberRepository;
 import org.junit.jupiter.api.DisplayName;

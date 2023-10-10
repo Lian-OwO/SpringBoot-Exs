@@ -8,11 +8,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ch2-homework" />
-        <module name="ch4-test" />
+        <module name="ch7_8-test" />
         <module name="ch3-test" />
         <module name="ch5-test" />
-        <module name="ch2-test" />
         <module name="ch1-2-test" />
+        <module name="ch4-test" />
+        <module name="ch6-test" />
+        <module name="ch2-test" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -30,6 +32,8 @@
       <module name="ch4-test" options="-parameters" />
       <module name="ch5" options="-parameters" />
       <module name="ch5-test" options="-parameters" />
+      <module name="ch6-test" options="-parameters" />
+      <module name="ch7_8-test" options="-parameters" />
       <module name="demo" options="-parameters" />
     </option>
   </component>

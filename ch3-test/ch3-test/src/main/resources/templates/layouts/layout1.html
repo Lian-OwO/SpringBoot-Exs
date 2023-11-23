@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+<!--    &lt;!&ndash; CSS only &ndash;&gt;-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!--    사용자가 정의한 css 불러와서 사용하기-->
+    <!--스프링에서, resource - static 하위를 바라보고 있어요.-->
+    <link th:href="@{/css/layout1.css}" rel="stylesheet">
+
+<!--    &lt;!&ndash; JS, Popper.js, and jQuery &ndash;&gt;-->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <th:block layout:fragment="script"></th:block>
+    <th:block layout:fragment="css"></th:block>
+
+</head>
+<body>
+<!--fragments 폴더 하위의 , 각 영역(조각) 불러오기, include -->
+<!-- 헤더 파일안에   <div th:fragment="header">-->
+<!--예) fragments/header : 경로 아래의 파일
+예2) ::header -> th:fragment="header"-->
+    <div th:replace="fragments/header::header"></div>
+
+<!--교체가 됨. -->
+<!--현재, 본문이 : thymeleafEx07.html-->
+    <div layout:fragment="content" >
+
+    </div>
+
+    <div th:replace="fragments/footer::footer"></div>
+
+</body>
+</html>

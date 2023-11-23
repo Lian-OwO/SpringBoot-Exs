@@ -19,8 +19,8 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class MemberController {
 
-    private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
+    private final MemberService memberService;
 
     @GetMapping(value = "/new")
     public String memberForm(Model model){

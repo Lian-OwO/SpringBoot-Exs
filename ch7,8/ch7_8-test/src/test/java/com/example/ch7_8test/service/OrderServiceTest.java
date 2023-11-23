@@ -62,14 +62,18 @@ class OrderServiceTest {
         Item item = saveItem();
         Member member = saveMember();
 
+        // 주문시 -> dto 담아서
         OrderDto orderDto = new OrderDto();
         orderDto.setCount(10);
         orderDto.setItemId(item.getId());
-
+        // 주문 후 주문 아이디 반환.
         Long orderId = orderService.order(orderDto, member.getEmail());
+        // 주문 후 디비에서 조회
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(EntityNotFoundException::new);
 
+        // 주문 내역에서 내가 주문한 상품들과
+        // 주문의 수량을 이용해서 전체 가격을 조회
         List<OrderItem> orderItems = order.getOrderItems();
 
         int totalPrice = orderDto.getCount()*item.getPrice();

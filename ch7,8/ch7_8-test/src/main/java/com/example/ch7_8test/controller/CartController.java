@@ -55,7 +55,8 @@ public class CartController {
         model.addAttribute("cartItems", cartDetailList);
         return "cart/cartList";
     }
-
+    // 부분 수정을 할 때 사용되는 부분
+    // 현재 가격의 변화 부분을 레스트로 데이터만 전달하고 있음
     @PatchMapping(value = "/cartItem/{cartItemId}")
     public @ResponseBody ResponseEntity updateCartItem(@PathVariable("cartItemId") Long cartItemId, int count, Principal principal){
 
